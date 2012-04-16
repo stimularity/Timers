@@ -1,0 +1,5 @@
+A basic timer application that allowes users to create various types of timers to track daily events.
+Each timer will have a mood which will play music matching tha mood.
+Users will be able to open their timers from anywhere on the internet.
+
+We plan to use node.js, express, socket.io, mongodb, jquery, and many other sweet technologies. 
