@@ -27,6 +27,12 @@ $(document).ready(function() {
 	addTimer(10);
 	addTimer(20);
 	addTimer(30);
+	
+	newTimer(4);
+	
+	$.get("/timer/createTimerForm", function(data) {
+			lightBox(600,400,data);
+	});
 });
 
 var timers = [];
@@ -41,15 +47,39 @@ function addTimer(minutes){ //Adds timer to document
 	//timers.push( new Timer(minutes) );
 	var t = new Timer(num, minutes);
 	timers.push(t);
-	$('#timers').append('<div id='+num+'_timer>'+t.update()+'</div>');
+	$('#timers').append('<div id='+num+'_timer>'+t.update()+'</div>').hide().fadeIn('slow');
 	num++;
 	//When adding timers, post to database and save timer.
 }
 
-function newTimer(minutes){ //Creates a new timer objects
-	
-	
+function newTimer(minutes){ //Creates a new timer objects saves them.
+	$.post("/timer/create", function(data) {
+		//alert(data);
+	});
 	//return Timer;
+}
+
+
+//Max's custom animated lightbox plugin. Quite magical.
+function lightBox(w,h,content){
+	$('html').prepend('<div id="lightbox"></div>').hide().fadeIn(400); //Add outer box
+	$("#lightbox").click(function() {
+		closeLightbox();
+	});
+	$('body').prepend('<div id="lightboxcore"></div>'); //Append inner box
+	$('#lightboxcore').css({'height':5, 'width':5});
+    $('#lightboxcore').css("top", (($(window).height() - $('#lightboxcore').outerHeight()) / 2) +  $(window).scrollTop() + "px");
+    $('#lightboxcore').css("left", (($(window).width() - $('#lightboxcore').outerWidth()) / 2) +  $(window).scrollLeft() + "px");
+	$('#lightboxcore').animate({
+		width: [w, 'swing'], left: '-='+(w/2),
+		height: [h, 'swing'], top: '-='+(h/2),
+		}, 500, function() {
+			$('#lightboxcore').append(content);
+	});
+}
+function closeLightbox(){
+	$('#lightbox').fadeOut(500);
+	$('#lightboxcore').fadeOut(300);
 }
 
 /*

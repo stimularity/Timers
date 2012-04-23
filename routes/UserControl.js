@@ -26,7 +26,7 @@ exports.validatelogin = function(req, res){
 				req.session.user = user;
 				res.redirect('/user/'+user.username);
 			}
-			else { res.render('index', { title: "Not Working" }); } 
+			else { res.render('index', { title: "Not Working" }); }
 		});
 	}
 };

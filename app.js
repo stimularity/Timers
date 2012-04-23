@@ -43,56 +43,11 @@ app.post('/validateregister', routes.validateregister);
 app.get('/user/:id', routes.user);
 
 //Timer URLs
-//app.post('/timer/create', routs.createTimer);
+app.post('/timer/create', routes.createTimer);
+app.get('/timer/createTimerForm', routes.createTimerForm);
 
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 
 //Testing area. Be careful down her'
-//Global Vars
-var mongoose = require('mongoose')
-  , Schema = mongoose.Schema;
-//Connect to database
-var db = mongoose.connect('mongodb://127.0.0.1/learningmongo');
-
-var Userschema = new Schema({
-	username	:{ type: String, index: true, unique: true, lowercase: true },
-	name		:{ first: String, last : String },
-	email		:{ type: String, required: true, index: { unique: true, sparse: true } },
-	password	:{ type: String, required: true}, 
-	timers		:[Timerschema]
-});
-
-var Timerschema = new Schema({
-	start		:Date,
-	end			:Date,
-	repeat		:Number,
-	interval	:Number,
-	type		:Number,
-	comment		:String,
-});
-/*
-var OtherUserschema = new Schema({
-    title     : { type: String, index: true }
-  , slug      : { type: String, lowercase: true, trim: true }
-  , date      : Date
-  , buf       : Buffer
-  , comments  : [Comment]
-  , creator   : Schema.ObjectId
-});
-*/
-var t;
-var User = mongoose.model('Users', Userschema);
-var Timer = mongoose.model('Timers', Timerschema);
-
-function validateUser(username, password, cb){
-	User.findOne({username:username, password:password}).run(function (err, user) {
-		//console.log(user);
-		return cb(user);
-	});
-}
-
-validateUser("test","Password", function(user){
-	if(user != null){ console.log(user.username);} else { console.log("Something fucked"); }
-});
