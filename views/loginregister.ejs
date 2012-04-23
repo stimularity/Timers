@@ -1,0 +1,16 @@
+<h1><%= title %></h1>
+<p>Page: <%= title %></p>
+
+<form name="register" action="/validateregister" method="post" onsubmit="return validateCreate()">
+	Username:<input type="text" name="name" value="Username" /> </br>
+	Password:<input type="password" name="password1" value="Password" /></br>
+	Retypeit:<input type="password" name="password2" value="Password" /></br>
+	E-mail:<input type="text" name="email" value="e-mail" /> </br>
+	<input type="submit" value="Create!">
+</form> 
+
+<form name="login" action="/validatelogin" method="post" onsubmit="return validateCreate()">
+	Username:<input type="text" name="usname" value="Username" /> </br>
+	Password:<input type="password" name="password3" value="Password" /></br>
+	<input type="submit" value="Login!">
+</form> 
