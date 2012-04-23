@@ -1,15 +1,5 @@
 var db = require("./Database");
-
-exports.home = function(req, res){
-	var user = req.session.user;
-	//if(req.params.id != req.session.user.username){ res.redirect("home"); } //Security, not finished.
-	//Load timers and all that shit via Jquery
-	
-	res.render('home', { title: user.name.first})
-};
-
-
-//Login and register page - A static page that is lame. I think it sucks...
+//Login and register page
 exports.login = function(req, res){
   res.render('loginregister', { title: 'Login/Register' })
 };
@@ -23,8 +13,8 @@ exports.validatelogin = function(req, res){
 		console.log("Attempting to validate user.");
 		db.validateUser(uname,pword, function(user){
 			if(user != null){ console.log(user.username); 
-				req.session.user = user;
-				res.redirect('/user/'+user.username);
+				req.session.user = user; //Super important
+				res.render('index', { title: "Everything is working well" });
 			}
 			else { res.render('index', { title: "Not Working" }); } 
 		});

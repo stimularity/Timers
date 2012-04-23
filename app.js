@@ -14,6 +14,8 @@ app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
   app.use(express.bodyParser());
+  app.use(express.cookieParser());
+  app.use(express.session({ secret: "keyboard cat" }));
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
@@ -38,7 +40,10 @@ app.post('/validatelogin', routes.validatelogin);
 app.post('/validateregister', routes.validateregister);
 
 //User Home
-app.get('/user/:id', routes.home);
+app.get('/user/:id', routes.user);
+
+//Timer URLs
+//app.post('/timer/create', routs.createTimer);
 
 
 app.listen(3000);
