@@ -22,16 +22,19 @@ $(document).ready(function() {
 	//run a shitty loop to time timers.
 	window.setInterval(updateTimers, 1000);
 	
-	addTimer(0.25); //15 second timer
+	/*
+	addTimer(30/60); //30 second timer
 	addTimer(1);
 	addTimer(10);
 	addTimer(20);
 	addTimer(30);
 	
-	newTimer(4);
+	newTimer(4); */
 	
-	$.get("/timer/createTimerForm", function(data) {
-			lightBox(600,400,data);
+	
+	
+	$("#newtimer").click(function() { //Open New Timer box
+			$.get("/timer/createTimerForm", function(data) { lightBox(600,400,data); });
 	});
 });
 
@@ -62,7 +65,7 @@ function newTimer(minutes){ //Creates a new timer objects saves them.
 
 //Max's custom animated lightbox plugin. Quite magical.
 function lightBox(w,h,content){
-	$('html').prepend('<div id="lightbox"></div>').hide().fadeIn(400); //Add outer box
+	$('html').prepend('<div id="lightbox"></div>').fadeIn(400); //Add outer box
 	$("#lightbox").click(function() {
 		closeLightbox();
 	});
