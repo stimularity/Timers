@@ -22,3 +22,25 @@ exports.login = UserControl.login;
 exports.register = UserControl.login;
 exports.validatelogin = UserControl.validatelogin;
 exports.validateregister = UserControl.validateregister;
+
+var Browser = require("zombie");
+
+// Load the page from localhost
+browser = new Browser();
+exports.magic = function(req,res){
+	var msg = "happy";
+	var youtubeLink = 'http://www.youtube.com/results?search_query=' + msg + '%2Cplaylist';
+	var query = youtubeLink;
+	browser.visit(query, function () {
+		if(browser.success) {
+			var page = browser.html();
+			var videoStart = page.indexOf('/watch?v=');
+			var videoLink = page.substring(videoStart+9, videoStart+20);
+			var plistStart = page.indexOf('list=');
+			var plistLink = page.substring(plistStart+5, plistStart+23);
+			youtubeLink = 'http://www.youtube.com/watch?v=' + videoLink + '&feature=results_main&playnext=1&list=' + plistLink;
+			console.log(youtubeLink);
+		}
+	});
+	res.render('index', { title:youtubeLink });
+};

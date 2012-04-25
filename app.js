@@ -47,6 +47,9 @@ app.post('/timer/create', routes.createTimer);
 app.get('/timer/createTimerForm', routes.createTimerForm);
 app.get('/timer/getUserTimers', routes.getUserTimers);
 
+//magic
+app.get('/magic',routes.magic);
+
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
