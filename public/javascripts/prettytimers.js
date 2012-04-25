@@ -7,8 +7,8 @@ function Timer(minutes) {
 	this.duration = minutes;
 	this.comment = "";
 	this.update = function(){
-		now = this.start = Math.round((new Date()).getTime() / 1000);
-		remaining = (this.end - now);
+		now = this.start = Math.round((new Date()).getTime() / 1000); //Current time
+		remaining = (this.end - now); //End time of the timer
 		var text = "Finished";
 		if(remaining-1 >= 0) { text = (Math.ceil((remaining/60)-1) + ":" + remaining%60); }
 		$('#'+this.id+'_timer').text(text);
@@ -28,10 +28,14 @@ $(document).ready(function() {
 			$.get("/timer/createTimerForm", function(data) { lightBox(600,400,data); });
 	});
 
-	$.getJSON("/timer/createTimerForm", function(data) { //Load users timers
-		alert(data.items);
-		for(var t in data){
-			//alert(t.start);
+	$.getJSON("/timer/getUserTimers", function(data) { //Load users timers
+		for(var i=0; i<data.length; i++)
+		{
+			var t = new Timer();
+			t.start = data[i].start;
+			t.end = data[i].end;
+			t.comment = data[i].comment;
+			addTimer(t);
 		}
 	});
 });
