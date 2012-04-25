@@ -10,3 +10,8 @@ exports.createTimer = function(req, res){ //Called by Javascript
 exports.createTimerForm = function(req, res){
 	res.render('createTimerForm', { layout: false });
 }
+
+exports.getUserTimers = function(req, res){
+	var user = req.session.user;
+	res.json(user.timers);
+}

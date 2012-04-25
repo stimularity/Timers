@@ -45,6 +45,7 @@ app.get('/user/:id', routes.user);
 //Timer URLs
 app.post('/timer/create', routes.createTimer);
 app.get('/timer/createTimerForm', routes.createTimerForm);
+app.get('/timer/getUserTimers', routes.getUserTimers);
 
 
 app.listen(3000);

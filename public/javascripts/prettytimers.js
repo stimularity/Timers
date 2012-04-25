@@ -4,7 +4,8 @@ function Timer(minutes) {
 	this.id = 0;
 	this.start = Math.round((new Date()).getTime() / 1000);
 	this.end = this.start + (minutes * 60);
-	this.t = minutes;
+	this.duration = minutes;
+	this.comment = "";
 	this.update = function(){
 		now = this.start = Math.round((new Date()).getTime() / 1000);
 		remaining = (this.end - now);
@@ -25,6 +26,13 @@ $(document).ready(function() {
 	
 	$("#newtimer").click(function() { //Open New Timer box
 			$.get("/timer/createTimerForm", function(data) { lightBox(600,400,data); });
+	});
+
+	$.getJSON("/timer/createTimerForm", function(data) { //Load users timers
+		alert(data.items);
+		for(var t in data){
+			//alert(t.start);
+		}
 	});
 });
 

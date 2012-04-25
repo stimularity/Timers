@@ -11,6 +11,7 @@ $(document).ready(function() {
 		if(seconds){ runtime = runtime/60; }
 
 		var t = new Timer(runtime); //Create a new timer object. This is the ONLY place where this happens
+		t.comment = $('#timername').val();
 		$.post("/timer/create", { timer:t }, function(data) {//createTimer in TimerControl.js
 			//alert(data);
 			addTimer(t);

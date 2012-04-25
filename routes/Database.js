@@ -12,8 +12,9 @@ var Userschema = new Schema({
 });
 
 var Timerschema = new Schema({
-	start		:Date,
-	end			:Date,
+	start		:Number,
+	end			:Number,
+	duration	:Number,
 	repeat		:Number,
 	interval	:Number,
 	type		:Number,
@@ -35,16 +36,24 @@ var Timer = mongoose.model('Timers', Timerschema);
 
 //Timer functions
 exports.saveTimer = function(user,timer){
-	user.timers.push(timer);
-	user.save(function(err, user_Saved){
+	newt = new Timer();
+	newt.start = timer.start;
+	newt.end = timer.end;
+	newt.duration = timer.duration;
+	newt.comment = timer.comment;
+
+	User.findOne({username:user.username, password:user.password}).run(function (err, query) {
+		query.timers.push(newt);
+		query.save(function(err, user_Saved){
 		if(err){
-			throw err;
-			//console.log(err);
+			//throw err;
+			console.log(err);
 			//return "Something is fucked.";
 		}else{
 			//console.log('saved!');
-			return "Timer saved to user account";
+			return "Saved a fuking timer for fucking user " + user.username;
 		}
+	});
 	});
 }
 
