@@ -1,15 +1,15 @@
 var num = 0;
 //Javascript Timer Object
-function Timer(id, minutes) {
-	this.id = id;
+function Timer(minutes) {
+	this.id = 0;
 	this.start = Math.round((new Date()).getTime() / 1000);
 	this.end = this.start + (minutes * 60);
 	this.t = minutes;
 	this.update = function(){
 		now = this.start = Math.round((new Date()).getTime() / 1000);
 		remaining = (this.end - now);
-		var text = "Finished"
-		if(remaining-1 >= 0) { text = (Math.ceil((remaining/60)-1) + ":" + remaining%60); } 
+		var text = "Finished";
+		if(remaining-1 >= 0) { text = (Math.ceil((remaining/60)-1) + ":" + remaining%60); }
 		$('#'+this.id+'_timer').text(text);
 	};
 }
@@ -21,16 +21,6 @@ $(document).ready(function() {
 	
 	//run a shitty loop to time timers.
 	window.setInterval(updateTimers, 1000);
-	
-	/*
-	addTimer(30/60); //30 second timer
-	addTimer(1);
-	addTimer(10);
-	addTimer(20);
-	addTimer(30);
-	
-	newTimer(4); */
-	
 	
 	
 	$("#newtimer").click(function() { //Open New Timer box
@@ -46,21 +36,23 @@ function updateTimers(){
 }
 
 
-function addTimer(minutes){ //Adds timer to document
+function addTimer(timer){ //Adds timer to document
 	//timers.push( new Timer(minutes) );
-	var t = new Timer(num, minutes);
-	timers.push(t);
-	$('#timers').append('<div id='+num+'_timer>'+t.update()+'</div>').hide().fadeIn('slow');
+	//var t = new Timer(num, minutes);
+	timer.id = num; //Add an ID so the timer can be located in the dom.
+	timers.push(timer);
+	$('#timers').append('<div id='+num+'_timer>'+timer.update()+'</div>').hide().fadeIn('slow');
 	num++;
 	//When adding timers, post to database and save timer.
 }
 
+/*
 function newTimer(minutes){ //Creates a new timer objects saves them.
 	$.post("/timer/create", function(data) {
 		//alert(data);
 	});
 	//return Timer;
-}
+} */
 
 
 //Max's custom animated lightbox plugin. Quite magical.
@@ -75,7 +67,7 @@ function lightBox(w,h,content){
     $('#lightboxcore').css("left", (($(window).width() - $('#lightboxcore').outerWidth()) / 2) +  $(window).scrollLeft() + "px");
 	$('#lightboxcore').animate({
 		width: [w, 'swing'], left: '-='+(w/2),
-		height: [h, 'swing'], top: '-='+(h/2),
+		height: [h, 'swing'], top: '-='+(h/2)
 		}, 500, function() {
 			$('#lightboxcore').append(content);
 	});

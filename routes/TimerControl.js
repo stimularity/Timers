@@ -1,11 +1,10 @@
 var db = require("./Database");
 
-exports.createTimer = function(req, res){
+exports.createTimer = function(req, res){ //Called by Javascript
 	var user = req.session.user; //User is logged in.
-	var start = req.body.start;
-	var end = req.body.end;
-	
-	res.json(user); //Will return a timer object for parsing
+	var timer = req.body.timer; //Be sure to pass timer objects for easy expandability
+	db.saveTimer(user, timer);
+	res.json("YUP"); //Will return a timer object for parsing
 };
 
 exports.createTimerForm = function(req, res){

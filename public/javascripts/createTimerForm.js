@@ -6,13 +6,14 @@ $(document).ready(function() {
 	
 	//Submit button
 	$("#timerformsubmit").click(function() {
+
 		
 		if(seconds){ runtime = runtime/60; }
-		var start = Math.round((new Date()).getTime() / 1000);
-		var end = start + (runtime * 60);
-		
-		$.post("/timer/create", { start:start, end:end }, function(data) {
-			addTimer(runtime);
+
+		var t = new Timer(runtime); //Create a new timer object. This is the ONLY place where this happens
+		$.post("/timer/create", { timer:t }, function(data) {//createTimer in TimerControl.js
+			//alert(data);
+			addTimer(t);
 			closeLightbox();
 			//alert("Data Loaded: " + data);
 		});

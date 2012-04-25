@@ -1,6 +1,5 @@
 //Global Vars
-var mongoose = require('mongoose')
-  , Schema = mongoose.Schema;
+var mongoose = require('mongoose') , Schema = mongoose.Schema;
 //Connect to database
 var db = mongoose.connect('mongodb://127.0.0.1/learningmongo');
 
@@ -8,7 +7,7 @@ var Userschema = new Schema({
 	username	:{ type: String, index: true, unique: true, lowercase: true },
 	name		:{ first: String, last : String },
 	email		:{ type: String, required: true, index: { unique: true, sparse: true } },
-	password	:{ type: String, required: true}, 
+	password	:{ type: String, required: true},
 	timers		:[Timerschema]
 });
 
@@ -18,7 +17,7 @@ var Timerschema = new Schema({
 	repeat		:Number,
 	interval	:Number,
 	type		:Number,
-	comment		:String,
+	comment		:String
 });
 /*
 var OtherUserschema = new Schema({
@@ -34,6 +33,22 @@ var OtherUserschema = new Schema({
 var User = mongoose.model('Users', Userschema);
 var Timer = mongoose.model('Timers', Timerschema);
 
+//Timer functions
+exports.saveTimer = function(user,timer){
+	user.timers.push(timer);
+	user.save(function(err, user_Saved){
+		if(err){
+			throw err;
+			//console.log(err);
+			//return "Something is fucked.";
+		}else{
+			//console.log('saved!');
+			return "Timer saved to user account";
+		}
+	});
+}
+
+//User Functions
 exports.validateUser = function(username, password, cb){
 	User.findOne({username:username, password:password}).run(function (err, user) {
 		cb(user);
@@ -50,9 +65,9 @@ exports.newUser = function(username, password, email){
 	
 	user.save(function(err, user_Saved){
 		if(err){
-			//throw err;
-			console.log(err);
-			return "Something is fucked.";
+			throw err;
+			//console.log(err);
+			//return "Something is fucked.";
 		}else{
 			//console.log('saved!');
 			return "User Saved. Have a nice Day.";
