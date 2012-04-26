@@ -22,7 +22,7 @@ exports.validatelogin = function(req, res){
 	if(uname != null && pword != null){
 		console.log("Attempting to validate user.");
 		db.validateUser(uname,pword, function(user){
-			if(user != null){ console.log(user.username); 
+			if(user !== null){ console.log(user.username);
 				req.session.user = user;
 				res.redirect('/user/'+user.username);
 			}

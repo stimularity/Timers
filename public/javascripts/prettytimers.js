@@ -1,7 +1,9 @@
 var num = 0;
+var timers = [];
 //Javascript Timer Object
 function Timer(minutes) {
 	this.id = 0;
+	this._id = "";
 	this.start = Math.round((new Date()).getTime() / 1000);
 	this.end = this.start + (minutes * 60);
 	this.duration = minutes;
@@ -11,14 +13,13 @@ function Timer(minutes) {
 		remaining = (this.end - now); //End time of the timer
 		var text = "Finished";
 		if(remaining-1 >= 0) { text = (Math.ceil((remaining/60)-1) + ":" + remaining%60); }
-		$('#'+this.id+'_timer').text(text);
+		$('#'+this.id+'_ticker').text(text); //Update their own text
 	};
 }
 //Timer Object
 
 // JavaScript Document bitch
 $(document).ready(function() {
-	//Function to get all saved timers.
 	
 	//run a shitty loop to time timers.
 	window.setInterval(updateTimers, 1000);
@@ -35,12 +36,14 @@ $(document).ready(function() {
 			t.start = data[i].start;
 			t.end = data[i].end;
 			t.comment = data[i].comment;
+			t.duration = data[i].duration;
+			t._id = data[i]._id;
 			addTimer(t);
 		}
 	});
 });
 
-var timers = [];
+
 function updateTimers(){
 	for(var i=0; i<timers.length; i++){
 		timers[i].update();
@@ -51,21 +54,49 @@ function updateTimers(){
 function addTimer(timer){ //Adds timer to document
 	//timers.push( new Timer(minutes) );
 	//var t = new Timer(num, minutes);
+	num++;
 	timer.id = num; //Add an ID so the timer can be located in the dom.
 	timers.push(timer);
-	$('#timers').append('<div id='+num+'_timer>'+timer.update()+'</div>').hide().fadeIn('slow');
-	num++;
-	//When adding timers, post to database and save timer.
+
+	
+	//This is going to be so ugly, but its the easiest way.
+	$('#timers').append(
+		'<div id="'+num+'_timer" class="timerentry" class="timerbutton">'+
+			'<div id="'+num+'_ticker" class="timerdisplay"></div>'+
+			'<div class="timerbutton">Duration:'+timer.duration+'</div>'+
+			'<div class="restarttimerbutton">restart</div>'+
+			'<div class="removetimerbutton">remove</div>'+
+			'<div class="timerbutton">'+timer.comment+'</div>'+
+			'<div class="timerid">'+timer._id+'</div>'+
+		'</div>'
+	);
+
+	bindTimerButtons();
+	
 }
 
-/*
-function newTimer(minutes){ //Creates a new timer objects saves them.
-	$.post("/timer/create", function(data) {
-		//alert(data);
-	});
-	//return Timer;
-} */
+function bindTimerButtons(){
+	
+	$('.removetimerbutton').unbind(); //Unbind all previous events so they dont overlap
+	$('.restarttimerbutton').unbind(); //Unbind all previous events so they dont overlap
 
+	$('.removetimerbutton').click(function(){ //Event for when the timers delete button is clicked
+		var index = ($(this).parent().attr("id").substring(0,1)) - 1; //Get ID of timer in global timer array.
+		//alert(timers[index].comment);
+		//var id = $(this).parent().find('.timerid');
+		var box = $(this).parent();
+		$.post("/timer/delete", { timer:timers[index] }, function(data) {//deleteTimer in TimerControl.js
+			if(data == 1) {
+				box.fadeOut('slow'); //Remove timer on success
+			}
+		});
+	});
+	$('.restarttimerbutton').click(function(){
+		var index = ($(this).parent().attr("id").substring(0,1)) - 1;
+		var t = timers[index];
+		alert(t.duration + " " + t.comment);
+	});
+}
 
 //Max's custom animated lightbox plugin. Quite magical.
 function lightBox(w,h,content){

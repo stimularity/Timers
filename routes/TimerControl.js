@@ -1,17 +1,40 @@
 var db = require("./Database");
 
+//Timer manipulation functions
 exports.createTimer = function(req, res){ //Called by Javascript
 	var user = req.session.user; //User is logged in.
 	var timer = req.body.timer; //Be sure to pass timer objects for easy expandability
-	db.saveTimer(user, timer);
-	res.json("YUP"); //Will return a timer object for parsing
+	db.saveTimer(user, timer, function(success, newuser){
+		if(success){
+			req.session.user = newuser; //Update user session key.
+			res.send("1");
+		} else {
+			res.send("0");
+		}
+	});
+};
+exports.deleteTimer = function(req, res){
+	var user = req.session.user; //User is logged in.
+	var timer = req.body.timer; //Be sure to pass timer objects for easy expandability
+	db.deleteTimer(user, timer, function(success, newuser){
+		if(success){
+			req.session.user = newuser; //Update user session key.
+			res.send("1");
+		} else {
+			res.send("0");
+		}
+	}); //Timer object, as usual.
 };
 
+//Create Timer form, for timer creation
 exports.createTimerForm = function(req, res){
 	res.render('createTimerForm', { layout: false });
-}
+};
 
-exports.getUserTimers = function(req, res){
+exports.getUserTimers = function(req, res){ //Returs JSON of users timers
 	var user = req.session.user;
-	res.json(user.timers);
-}
+	db.validateUser(user.username, user.password, function(newuser){
+		req.session.user = newuser; //Pulls new user object form database each time.
+		res.json(user.timers);
+	});
+};

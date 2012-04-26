@@ -13,9 +13,10 @@ $(document).ready(function() {
 		var t = new Timer(runtime); //Create a new timer object. This is the ONLY place where this happens
 		t.comment = $('#timername').val();
 		$.post("/timer/create", { timer:t }, function(data) {//createTimer in TimerControl.js
-			//alert(data);
-			addTimer(t);
-			closeLightbox();
+			if(data == 1){
+				addTimer(t);
+				closeLightbox();
+			}
 			//alert("Data Loaded: " + data);
 		});
 			

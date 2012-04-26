@@ -14,6 +14,7 @@ exports.user = UserControl.home;
 
 //Timer Management Routes
 exports.createTimer = TimerControl.createTimer;
+exports.deleteTimer = TimerControl.deleteTimer;
 exports.createTimerForm = TimerControl.createTimerForm;
 exports.getUserTimers = TimerControl.getUserTimers;
 
