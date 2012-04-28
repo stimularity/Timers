@@ -34,12 +34,14 @@ exports.validatelogin = function(req, res){
 //Post page for checking registration information
 exports.validateregister = function(req, res){
   	var message = "That didnt work at all...";
+  	var fname = req.body.fname;
+  	var lname = req.body.lname;
 	var uname = req.body.name;
 	var pword = req.body.password1; 
 	var email = req.body.email;
 	if(uname != null && pword != null && email != null){
-		message = db.newUser(uname,pword,email);
+		message = db.newUser(fname,lname,uname,pword,email);
 	}
 	
-	res.render('index', { title: message })
+	res.render('loginregister', { title: "Creation successful! Please login now." })
 };

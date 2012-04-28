@@ -74,12 +74,12 @@ exports.validateUser = function(username, password, cb){
 	});
 };
 
-exports.newUser = function(username, password, email){
+exports.newUser = function(fname,lname,username, password, email){
 	var user = new User();
 	user.username = username;
 	user.password = password;
-	user.name.first = "Chedder";
-	user.name.last = "McDougan";
+	user.name.first = fname;
+	user.name.last = lname;
 	user.email = email;
 	
 	user.save(function(err, user_Saved){
