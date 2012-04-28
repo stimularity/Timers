@@ -1,11 +1,129 @@
+/* ---------------------------------- Rainbow Theme Styles  ---------------------------------- */
+html, body, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote,  
+pre, form, fieldset, table, th, td { margin: 0; padding: 0; }
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	background:url(/images/bg.jpg) no-repeat center top;
+	font-family:Arial, Helvetica, sans-serif;
+}
+#main {
+	width:986px;
+	float:left;
+}
+#container {
+	width:986px;
+	margin:0 auto;
+}
+#header {
+	height:88px;
+	margin: 20px 0 0 0;
+}
+	#moodlogo {
+		position: absolute;
+		top:37px;
+		width:300px;
+		height:87px;
+		background:url(/images/logo.png) no-repeat;
+		z-index:2;
+	}
+	#hiddenlogo {
+		width:300px;
+		height:87px;
+		display:none;
+	}
+	#moodlogoholder {
+		float:left;
+		margin:0 20px 0 0;
+		width:300px;
+		height:87px;
+	}
+	#userstatus {
+		float: left;
+		width:650px;
+		margin: 20px 0 0 0;
+		text-align: right;
+	}
+	
+	#moodmenu {
+		width:100%;
+	}
+	
+	#moodmenu ul {
+		text-decoration:none;
+		list-style-type:none;
+	}
+	#moodmenu li {
+		float:left;
+		font-size:12px;
+		margin:7px 0 0 8px;
+	}
+	#moodmenu li a{
+		padding:15px 0 0 0;
+		color:#000;
+		text-decoration:none;
+		text-align: center;
+		display:block;
+		height:30px;
+		width:100px;
+		background:url(/images/menubuttonbg.png) repeat-x;
+	}
+	#moodmenu li a:hover {
+		color:#FFF;
+	}
+		.red {
+			background-color:#ff0000;
+			border-radius: 3px 3px 0 0;
+			border-top:thin solid #ab0000;
+			border-left:thin solid #ab0000;
+			border-right:thin solid #ab0000;
+		}
+		.yellow {
+			background-color:#ffee00;
+			border-radius: 3px 3px 0 0;
+			border-top:thin solid #abaa00;
+			border-left:thin solid #abaa00;
+			border-right:thin solid #abaa00;
+		}
+		.green {
+			background-color:#00ff00;
+			border-radius: 3px 3px 0 0;
+			border-top:thin solid #02ab00;
+			border-left:thin solid #02ab00;
+			border-right:thin solid #02ab00;
+		}
+		.cyan {
+			background-color:#00ffff;
+			border-radius: 3px 3px 0 0;
+			border-top:thin solid #00a8ab;
+			border-left:thin solid #00a8ab;
+			border-right:thin solid #00a8ab;
+		}
+		.blue {
+			background-color:#0000ff;
+			border-radius: 3px 3px 0 0;
+			border-top:thin solid #0100ab;
+			border-left:thin solid #0100ab;
+			border-right:thin solid #0100ab;
+		}
+		.purple {
+			background-color:#ee00ff;
+			border-radius: 3px 3px 0 0;
+			border-top:thin solid #a900ab;
+			border-left:thin solid #a900ab;
+			border-right:thin solid #a900ab;
+		}
+.prettyline {
+	border-top:thin solid #000;
+	width:665px;
+	float: left;
+	margin:0 0 0 320px;
+}
+#content{
+	float: left;
+	width:100%;
 }
 
-a {
-  color: #00B7FF;
-}
+#footer{}
 
 /* ---------------------------------- Individual Timer Styles  ---------------------------------- */
 
@@ -86,7 +204,7 @@ a {
 	user-select: none;
 	
 	cursor:pointer;
-	cursor:hannd;
+	cursor:hand;
 }
 #durationminutes {
 	width: 300px;

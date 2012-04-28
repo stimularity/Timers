@@ -5,9 +5,39 @@
 	<script type="text/javascript" src="/javascripts/jquery-1.7.2.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script type="text/javascript" src="/javascripts/prettyforms.js"></script>
+  <script type="text/javascript" src="/javascripts/prettytimers.js"></script>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <%- body %>
+
+    <div id="container">
+
+      <div id="header">
+        <div id="moodlogoholder"></div><!-- moodlogoholder -->
+          <div id="moodlogo"><div id="hiddenlogo"><a href="/">
+            <img src="/images/logohidden.png" /></a></div></div><!-- moodlogo -->
+
+          <div id="userstatus">Welcome: User. (Logout)</div><!-- userstatus -->
+          <div id="moodmenu">
+              <ul>
+                  <li class="red"><a href="/">Home</a>
+                  <li class="yellow"><a href="/login">Login</a></li>
+                  <li class="green"><a href="/register">Register</a></li>
+                  <li class="cyan"><a href="/about">About</a></li>
+                  <li class="blue"><a href="/help">Help</a></li>
+                  <li class="purple"><a href="/things">Things</a></li>
+              </ul>
+          </div><!-- moodmenu -->
+      </div> <!-- header -->
+      <div class="prettyline"></div>
+      <div id="content">
+        <%- body %>
+      </div><!-- body -->
+
+      <div id="footer">
+      </div><!-- footer -->
+       
+    </div><!-- container -->
+
   </body>
 </html>

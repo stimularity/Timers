@@ -20,6 +20,15 @@ function Timer(minutes) {
 
 // JavaScript Document bitch
 $(document).ready(function() {
+	//Make Logo super pretty
+	//Animation for site logo
+	$('#moodlogo').hover(
+	function () { //Fade in logo
+		$('#hiddenlogo').stop().fadeTo(2000,1);
+	},
+	function () { //fade out logo.
+		$('#hiddenlogo').stop().fadeTo(500,0);
+	});
 	
 	//run a shitty loop to time timers.
 	window.setInterval(updateTimers, 1000);
