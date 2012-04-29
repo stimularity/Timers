@@ -12,6 +12,16 @@ $(document).ready(function() {
 
 		var t = new Timer(runtime); //Create a new timer object. This is the ONLY place where this happens
 		t.comment = $('#timername').val();
+
+		//check if min or sec
+		if(minutes == true && seconds == false){
+			//minutes
+			t.type = 1;
+		}else{
+			//seconds
+			t.type = 0;
+		}
+
 		$.post("/timer/create", { timer:t }, function(data) {//createTimer in TimerControl.js
 			if(data == 1){
 				addTimer(t);

@@ -1,5 +1,5 @@
 <h1><%= title %></h1>
-<p>Page: <%= title %></p>
+
 
 <form name="register" action="/validateregister" method="post" onsubmit="return validateCreate()">
 	First Name:<input type="text" name="fname" value="First" /> </br>
@@ -10,6 +10,8 @@
 	E-mail:<input type="text" name="email" value="e-mail" /> </br>
 	<input type="submit" value="Create!">
 </form> 
+
+<h2> Login </h2>
 
 <form name="login" action="/validatelogin" method="post" onsubmit="return validateCreate()">
 	Username:<input type="text" name="usname" value="Username" /> </br>

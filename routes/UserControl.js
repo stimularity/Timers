@@ -14,6 +14,16 @@ exports.login = function(req, res){
   res.render('loginregister', { title: 'Login/Register' })
 };
 
+exports.logout = function(req, res){
+        
+    var use = req.session.user.name.first;
+    
+    req.session.destroy();
+
+    res.render('logout', {title: 'Logout', user: use})
+
+};
+
 //post page for checking log in information
 exports.validatelogin = function(req, res){
 	var message = "That didnt work at all...";
@@ -26,7 +36,7 @@ exports.validatelogin = function(req, res){
 				req.session.user = user;
 				res.redirect('/user/'+user.username);
 			}
-			else { res.render('index', { title: "Not Working" }); }
+			else { res.render('loginregister', { title: "Invalid login. Please try again." }); }
 		});
 	}
 };
@@ -45,3 +55,4 @@ exports.validateregister = function(req, res){
 	
 	res.render('loginregister', { title: "Creation successful! Please login now." })
 };
+

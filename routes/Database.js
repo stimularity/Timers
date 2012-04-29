@@ -42,6 +42,7 @@ exports.saveTimer = function(user,timer,cb){
 	newt.end = timer.end;
 	newt.duration = timer.duration;
 	newt.comment = timer.comment;
+	newt.type = timer.type;
 
 	//Update this function, make it better!!
 	//http://mongoosejs.com/docs/updating-documents.html

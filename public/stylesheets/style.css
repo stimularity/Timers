@@ -1,6 +1,6 @@
 /* ---------------------------------- Rainbow Theme Styles  ---------------------------------- */
 html, body, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote,  
-pre, form, fieldset, table, th, td { margin: 0; padding: 0; }
+pre, form, fieldset, table, th, td { margin: 0; padding: 1; }
 
 body {
 	background:url(/images/bg.jpg) no-repeat center top;
@@ -139,7 +139,7 @@ body {
 .timerbutton {
 	float:left;
 	height:20px;
-	width:100px;
+	width:150px;
 	border:thin solid #000;
 }
 .removetimerbutton {
@@ -147,12 +147,16 @@ body {
 	height:20px;
 	width:100px;
 	border:thin solid #200;
+	cursor:pointer;
+	cursor:hand;
 }
 .restarttimerbutton {
 	float:left;
 	height:20px;
 	width:100px;
 	border:thin solid #200;
+	cursor:pointer;
+	cursor:hand;
 }
 .timerdisplay {
 	height:30px;

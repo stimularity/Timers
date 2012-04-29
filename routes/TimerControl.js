@@ -32,9 +32,14 @@ exports.createTimerForm = function(req, res){
 };
 
 exports.getUserTimers = function(req, res){ //Returs JSON of users timers
-	var user = req.session.user;
-	db.validateUser(user.username, user.password, function(newuser){
+
+	//check if user is logged in first
+	if(req.session.user != null){
+
+		var user = req.session.user;
+		db.validateUser(user.username, user.password, function(newuser){
 		req.session.user = newuser; //Pulls new user object form database each time.
 		res.json(user.timers);
-	});
+		});
+	}
 };

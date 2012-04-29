@@ -19,6 +19,7 @@ exports.createTimerForm = TimerControl.createTimerForm;
 exports.getUserTimers = TimerControl.getUserTimers;
 
 //Login/register pages and functions
+exports.logout = UserControl.logout;
 exports.login = UserControl.login;
 exports.register = UserControl.login;
 exports.validatelogin = UserControl.validatelogin;

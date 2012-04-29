@@ -7,6 +7,7 @@ function Timer(minutes) {
 	this.start = Math.round((new Date()).getTime() / 1000);
 	this.end = this.start + (minutes * 60);
 	this.duration = minutes;
+	this.type = 0; //default 0 = seconds, 1 = minutes
 	this.comment = "";
 	this.update = function(){
 		now = this.start = Math.round((new Date()).getTime() / 1000); //Current time
@@ -47,6 +48,7 @@ $(document).ready(function() {
 			t.comment = data[i].comment;
 			t.duration = data[i].duration;
 			t._id = data[i]._id;
+			t.type = data[i].type;
 			addTimer(t);
 		}
 	});
@@ -63,6 +65,19 @@ function updateTimers(){
 function addTimer(timer){ //Adds timer to document
 	//timers.push( new Timer(minutes) );
 	//var t = new Timer(num, minutes);
+	var timeType;
+	var timeAmount;
+	//set up the min or sec display
+
+	if(timer.type == 1){
+		timeType = 'Minutes';
+		timeAmount = timer.duration;
+	}
+	if(timer.type == 0){
+		timeType = 'Seconds';
+		timeAmount = timer.duration*60;
+	}
+
 	num++;
 	timer.id = num; //Add an ID so the timer can be located in the dom.
 	timers.push(timer);
@@ -72,9 +87,9 @@ function addTimer(timer){ //Adds timer to document
 	$('#timers').append(
 		'<div id="'+num+'_timer" class="timerentry" class="timerbutton">'+
 			'<div id="'+num+'_ticker" class="timerdisplay"></div>'+
-			'<div class="timerbutton">Duration:'+timer.duration+'</div>'+
-			'<div class="restarttimerbutton">restart</div>'+
-			'<div class="removetimerbutton">remove</div>'+
+			'<div class="timerbutton">Duration: '+timeAmount +' '+timeType+'</div>'+
+			'<div class="restarttimerbutton">Restart</div>'+
+			'<div class="removetimerbutton">Remove</div>'+
 			'<div class="timerbutton">'+timer.comment+'</div>'+
 			'<div class="timerid">'+timer._id+'</div>'+
 		'</div>'

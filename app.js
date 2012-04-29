@@ -34,6 +34,8 @@ app.configure('production', function(){
 app.get('/', routes.login);
 
 //Login/register
+app.post('/logout', routes.logout);
+app.post('/login', routes.login);
 app.get('/login', routes.login);
 app.get('/register', routes.register);
 app.post('/validatelogin', routes.validatelogin);
