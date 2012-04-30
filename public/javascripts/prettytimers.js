@@ -73,7 +73,7 @@ function addTimer(timer){ //Adds timer to document
 		timeType = 'Minutes';
 		timeAmount = timer.duration;
 	}
-	if(timer.type == 0){
+	if(timer.type === 0){
 		timeType = 'Seconds';
 		timeAmount = timer.duration*60;
 	}

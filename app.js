@@ -51,7 +51,7 @@ app.get('/timer/createTimerForm', routes.createTimerForm);
 app.get('/timer/getUserTimers', routes.getUserTimers); //returns JSON of timers in user object
 
 //magic
-app.get('/magic',routes.magic);
+app.post('/magic',routes.magic);
 
 
 app.listen(80);
