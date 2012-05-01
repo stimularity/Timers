@@ -48,7 +48,7 @@ $(document).ready(function() {
 			t.comment = data[i].comment;
 			t.duration = data[i].duration;
 			t._id = data[i]._id;
-			alert(t._id + " is the ID of the new timer!");
+			
 			addTimer(t);
 		}
 	});
@@ -86,11 +86,12 @@ function addTimer(timer){ //Adds timer to document
 	//This is going to be so ugly, but its the easiest way.
 	$('#timers').append(
 		'<div id="'+num+'_timer" class="timerentry" class="timerbutton">'+
+			'<div class="timercomment">'+timer.comment+'</div>'+
 			'<div id="'+num+'_ticker" class="timerdisplay"></div>'+
-			'<div class="timerbutton">Duration: '+timeAmount +' '+timeType+'</div>'+
+			'<div class="timerduration">Duration: '+timeAmount +' '+timeType+'</div>'+
 			'<div class="restarttimerbutton">Restart</div>'+
 			'<div class="removetimerbutton">Remove</div>'+
-			'<div class="timerbutton">'+timer.comment+'</div>'+
+			'<div class="progressbar"></div>'+
 			'<div class="timerid">'+timer._id+'</div>'+
 		'</div>'
 	);
@@ -125,6 +126,7 @@ function bindTimerButtons(){
 //Max's custom animated lightbox plugin. Quite magical.
 function lightBox(w,h,content){
 	$('html').prepend('<div id="lightbox"></div>').fadeIn(400); //Add outer box
+	$('#lightbox').css({'height':$(document).height(), 'width':$(document).width()});
 	$("#lightbox").click(function() {
 		closeLightbox();
 	});

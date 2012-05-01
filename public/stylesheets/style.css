@@ -1,9 +1,9 @@
 /* ---------------------------------- Rainbow Theme Styles  ---------------------------------- */
 html, body, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote,  
-pre, form, fieldset, table, th, td { margin: 0; padding: 1; }
+pre, form, fieldset, table, th, td { margin: 0; padding: 0; }
 
 body {
-	background:url(/images/bg.jpg) no-repeat center top;
+	background:url(/images/bg.jpg) repeat-x top #b9eeff;
 	font-family:Arial, Helvetica, sans-serif;
 }
 #main {
@@ -129,12 +129,14 @@ body {
 
 #timers {
 	width:100%;
-	background-color:#fda;
 }
 .timerentry {
-	width:100%;
+	width:450px;
+	height:300px;
 	float:left;
 	margin:0 0 15px 0;
+	border:thin solid #200;
+	background-color:#fda;
 }
 .timerbutton {
 	float:left;
@@ -142,30 +144,46 @@ body {
 	width:150px;
 	border:thin solid #000;
 }
-.removetimerbutton {
+.timerduration {
 	float:left;
 	height:20px;
-	width:100px;
+	width:50px;
 	border:thin solid #200;
 	cursor:pointer;
 	cursor:hand;
 }
+.removetimerbutton {
+	float:left;
+	height:20px;
+	width:50px;
+	border:thin solid #200;
+	cursor:pointer;
+	cursor:hand;
+}
+.timercomment {
+	float:left;
+	width:450px;
+	height:33px;
+	margin: 5px 0 5px 5px;
+	font-size:30px;
+	overflow: auto;
+}
 .restarttimerbutton {
 	float:left;
 	height:20px;
-	width:100px;
+	width:50px;
 	border:thin solid #200;
 	cursor:pointer;
 	cursor:hand;
 }
 .timerdisplay {
-	height:30px;
-	width:120px;
+	height:90px;
+	width:300px;
 	float:left;
-	border:thin solid #000;
 	text-align:center;
 	vertical-align:middle;
-	font-size:25px;
+	font-size:75px;
+	background-color:#FF0;
 }
 .timerid {
 	visibility: hidden;
@@ -192,6 +210,7 @@ body {
 
 /* ---------------------------------- Timer Creation form styles  ---------------------------------- */
 .timerformbutton {
+	background:url(/images/buttonbg.png) repeat-x top;
 	height:60px;
 	width:60px;
 	float:left;
@@ -210,6 +229,10 @@ body {
 	cursor:pointer;
 	cursor:hand;
 }
+#timername {
+	font-size:30px;
+	width:500px;
+}
 #durationminutes {
 	width: 300px;
 }
@@ -224,4 +247,8 @@ body {
 	width:100%;
 	float:left;
 	margin:0 0 15px 0;
+}
+
+.defaultTextActive{
+	color:gray;
 }
