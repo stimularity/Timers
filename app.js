@@ -32,6 +32,8 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.login);
+app.get('/help', routes.help);
+app.get('/about', routes.about);
 
 //Login/register
 app.post('/logout', routes.logout);

@@ -9,6 +9,32 @@ exports.index = function(req, res){
   res.render('index', { title: 'MoodTimer' });
 };
 
+exports.help = function(req, res){
+
+  var n;
+
+  if(req.session.user != null){
+    n = req.session.user.name.first;
+  }else{
+    n = 'Not Logged In';
+  }
+
+  res.render('help', { title: 'Help', name: n });
+};
+
+exports.about = function(req, res){
+
+  var n;
+
+  if(req.session.user != null){
+    n = req.session.user.name.first;
+  }else{
+    n = 'Not Logged In';
+  }
+
+  res.render('about', { title: 'About Us', name: n});
+};
+
 //User Home
 exports.user = UserControl.home;
 

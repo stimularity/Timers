@@ -4,8 +4,6 @@ exports.home = function(req, res){
 
 	if(req.session.user == null){
 
-		console.log("redirect in home, no log in");
-
 		res.redirect('/login');
 		return;
 
@@ -15,7 +13,7 @@ exports.home = function(req, res){
 	//if(req.params.id != req.session.user.username){ res.redirect("home"); } //Security, not finished.
 	//Load timers and all that shit via Jquery
 	
-	res.render('home', { title: user.name.first})
+	res.render('home', { title: 'Welcome', name: user.name.first})
 };
 
 
@@ -24,14 +22,12 @@ exports.login = function(req, res){
 
 	if(req.session.user != null){
 
-		console.log("yea not null, redirect to home!");
-
 		res.redirect('/user/'+ req.session.user.username);
 		return;
 
 	}
 
-  res.render('loginregister', { title: 'Login/Register' })
+  res.render('loginregister', { title: 'Login/Register', name: 'Not Logged In' })
 };
 
 exports.logout = function(req, res){
@@ -47,7 +43,7 @@ exports.logout = function(req, res){
     
     req.session.destroy();
 
-    res.render('logout', {title: 'Logout', user: use})
+    res.render('logout', {title: 'Logout', name: use})
 
 };
 
