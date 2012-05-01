@@ -35,6 +35,7 @@ app.get('/', routes.login);
 
 //Login/register
 app.post('/logout', routes.logout);
+app.get('/logout', routes.logout);
 app.post('/login', routes.login);
 app.get('/login', routes.login);
 app.get('/register', routes.register);

@@ -1,6 +1,16 @@
 var db = require("./Database");
 
 exports.home = function(req, res){
+
+	if(req.session.user == null){
+
+		console.log("redirect in home, no log in");
+
+		res.redirect('/login');
+		return;
+
+	}
+
 	var user = req.session.user;
 	//if(req.params.id != req.session.user.username){ res.redirect("home"); } //Security, not finished.
 	//Load timers and all that shit via Jquery
@@ -11,11 +21,28 @@ exports.home = function(req, res){
 
 //Login and register page - A static page that is lame. I think it sucks...
 exports.login = function(req, res){
+
+	if(req.session.user != null){
+
+		console.log("yea not null, redirect to home!");
+
+		res.redirect('/user/'+ req.session.user.username);
+		return;
+
+	}
+
   res.render('loginregister', { title: 'Login/Register' })
 };
 
 exports.logout = function(req, res){
         
+	if(req.session.user == null){
+
+		res.redirect('/login');
+		return;
+
+	}
+
     var use = req.session.user.name.first;
     
     req.session.destroy();
