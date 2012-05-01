@@ -59,7 +59,7 @@ exports.validatelogin = function(req, res){
 				req.session.user = user;
 				res.redirect('/user/'+user.username);
 			}
-			else { res.render('loginregister', { title: "Invalid login. Please try again." }); }
+			else { res.render('loginregister', { title: "Invalid login. Please try again.", name: "Not Loged In" }); }
 		});
 	}
 };
@@ -73,9 +73,13 @@ exports.validateregister = function(req, res){
 	var pword = req.body.password1; 
 	var email = req.body.email;
 	if(uname != null && pword != null && email != null){
-		message = db.newUser(fname,lname,uname,pword,email);
+		message = db.newUser(req, res, fname,lname,uname,pword,email);
+		//res.render('loginregister', { title: message, name: "Not Logged In" });
+		//return;
 	}
-	
-	res.render('loginregister', { title: "Creation successful! Please login now." })
+	//console.log("from inside usercontrol, " + message);
+	//renderLogin(req,res, message);
+	//res.render('loginregister', { title: "Error", name: "Not Logged In" })
 };
+
 
