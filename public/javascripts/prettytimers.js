@@ -48,7 +48,7 @@ $(document).ready(function() {
 			t.comment = data[i].comment;
 			t.duration = data[i].duration;
 			t._id = data[i]._id;
-			t.type = data[i].type;
+			alert(t._id + " is the ID of the new timer!");
 			addTimer(t);
 		}
 	});

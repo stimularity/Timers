@@ -14,6 +14,12 @@ exports.createTimer = function(req, res){ //Called by Javascript
 	});
 };
 exports.deleteTimer = function(req, res){
+
+	if(req.body.timer == null){
+		res.send("0");
+		return;
+	}
+
 	var user = req.session.user; //User is logged in.
 	var timer = req.body.timer; //Be sure to pass timer objects for easy expandability
 	db.deleteTimer(user, timer, function(success, newuser){

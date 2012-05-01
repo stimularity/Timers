@@ -57,13 +57,29 @@ exports.saveTimer = function(user,timer,cb){
 };
 
 exports.deleteTimer = function(user,timer,cb){
+var query;
+console.log("deleting " + timer._id + " for user " + user.name.first);
+
+	if(timer == null){
+		console.log("woaaah doggy");
+		return;
+
+	}
 
 	User.findOne({username:user.username, password:user.password}).run(function (err, query) {
+		console.log(query);
+		if(!err){
 		query.timers.id(timer._id).remove();
 		query.save(function (err) {
-			if(!err){ cb(true, query); }
-			else { cb(false, null); }
+			if(!err){ 
+
+				cb(true, query); 
+			}
+			else { 
+				cb(false, null); 
+			}
 		});
+	}
 	
 	});
 };
@@ -75,13 +91,25 @@ exports.validateUser = function(username, password, cb){
 	});
 };
 
-exports.newUser = function(fname,lname,username, password, email){
-	var user = new User();
+exports.newUser = function(req, res, fname,lname,username, password, email){
+
+var user = new User();
 	user.username = username;
 	user.password = password;
 	user.name.first = fname;
 	user.name.last = lname;
 	user.email = email;
+
+	User.findOne({username:username}).run(function(err, query){
+		if(query != null){
+		console.log("duplicate dude");
+			//we already have this username in the DB! error and try again
+			res.render('loginregister', { title: "Username already in use, try again.", name: "Not Logged In" });
+			//return "Username already in use, try again!";
+			
+		}else{
+		
+console.log("its fine");
 	
 	user.save(function(err, user_Saved){
 		if(err){
@@ -89,8 +117,11 @@ exports.newUser = function(fname,lname,username, password, email){
 			//console.log(err);
 			//return "Something is fucked.";
 		}else{
-			//console.log('saved!');
-			return "User Saved. Have a nice Day.";
+			console.log('saved!');
+			res.render('loginregister', { title: "Creation successful! Please login.", name: "Not Logged In" });
+			//return "Creation successful! Please login now.";
 		}
+	});
+	}
 	});
 }
