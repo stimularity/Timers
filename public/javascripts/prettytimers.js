@@ -86,11 +86,12 @@ function addTimer(timer){ //Adds timer to document
 	//This is going to be so ugly, but its the easiest way.
 	$('#timers').append(
 		'<div id="'+num+'_timer" class="timerentry" class="timerbutton">'+
+			'<div class="timercomment">'+timer.comment+'</div>'+
 			'<div id="'+num+'_ticker" class="timerdisplay"></div>'+
-			'<div class="timerbutton">Duration: '+timeAmount +' '+timeType+'</div>'+
+			'<div class="timerduration">Duration: '+timeAmount +' '+timeType+'</div>'+
 			'<div class="restarttimerbutton">Restart</div>'+
 			'<div class="removetimerbutton">Remove</div>'+
-			'<div class="timerbutton">'+timer.comment+'</div>'+
+			'<div class="progressbar"></div>'+
 			'<div class="timerid">'+timer._id+'</div>'+
 		'</div>'
 	);
