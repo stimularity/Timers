@@ -89,7 +89,7 @@ exports.validateUser = function(username, password, cb){
 	});
 };
 
-exports.newUser = function(req, res, username, password, 
+exports.newUser = function(req, res, username, password 
 	){
 
 var user = new User();
