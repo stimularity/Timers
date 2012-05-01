@@ -125,6 +125,7 @@ function bindTimerButtons(){
 //Max's custom animated lightbox plugin. Quite magical.
 function lightBox(w,h,content){
 	$('html').prepend('<div id="lightbox"></div>').fadeIn(400); //Add outer box
+	$('#lightbox').css({'height':$(document).height(), 'width':$(document).width()});
 	$("#lightbox").click(function() {
 		closeLightbox();
 	});
