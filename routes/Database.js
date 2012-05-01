@@ -15,8 +15,6 @@ var Timerschema = new Schema({
 
 var Userschema = new Schema({
 	username	:{ type: String, index: true, unique: true, lowercase: true },
-	name		:{ first: String, last : String },
-	email		:{ type: String, required: true, index: { unique: true, sparse: true } },
 	password	:{ type: String, required: true},
 	timers		:[Timerschema]
 });
@@ -91,14 +89,12 @@ exports.validateUser = function(username, password, cb){
 	});
 };
 
-exports.newUser = function(req, res, fname,lname,username, password, email){
+exports.newUser = function(req, res, username, password, 
+	){
 
 var user = new User();
 	user.username = username;
 	user.password = password;
-	user.name.first = fname;
-	user.name.last = lname;
-	user.email = email;
 
 	User.findOne({username:username}).run(function(err, query){
 		if(query != null){

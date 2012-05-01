@@ -13,7 +13,7 @@ exports.home = function(req, res){
 	//if(req.params.id != req.session.user.username){ res.redirect("home"); } //Security, not finished.
 	//Load timers and all that shit via Jquery
 	
-	res.render('home', { title: 'Welcome', name: user.name.first})
+	res.render('home', { title: 'Welcome', name: user.username})
 };
 
 
@@ -39,7 +39,7 @@ exports.logout = function(req, res){
 
 	}
 
-    var use = req.session.user.name.first;
+    var use = req.session.user.username;
     
     req.session.destroy();
 
@@ -67,13 +67,10 @@ exports.validatelogin = function(req, res){
 //Post page for checking registration information
 exports.validateregister = function(req, res){
   	var message = "That didnt work at all...";
-  	var fname = req.body.fname;
-  	var lname = req.body.lname;
 	var uname = req.body.name;
 	var pword = req.body.password1; 
-	var email = req.body.email;
-	if(uname != null && pword != null && email != null){
-		message = db.newUser(req, res, fname,lname,uname,pword,email);
+	if(uname != null && pword != null){
+		message = db.newUser(req, res, uname,pword);
 		//res.render('loginregister', { title: message, name: "Not Logged In" });
 		//return;
 	}
