@@ -1,5 +1,6 @@
 var num = 0;
 var timers = [];
+var timersOnScreen = 0;
 //Javascript Timer Object
 function Timer(minutes) {
 	this.id = 0;
@@ -41,8 +42,15 @@ $(document).ready(function() {
 			$.get("/timer/createTimerForm", function(data) { lightBox(600,400,data); });
 	});
 
+	retrieveTimers();
+	
+});
+
+function retrieveTimers(){
+
 	$.getJSON("/timer/getUserTimers", function(data) { //Load users timers
-		for(var i=0; i<data.length; i++)
+		alert(data.length + " " + timersOnScreen);
+		for(var i=timersOnScreen; i < data.length; i++)
 		{
 			var t = new Timer();
 			t.start = data[i].start;
@@ -52,9 +60,12 @@ $(document).ready(function() {
 			t._id = data[i]._id;
 			
 			addTimer(t);
+
+			timersOnScreen ++;
 		}
 	});
-});
+
+}
 
 
 function updateTimers(){
@@ -114,6 +125,7 @@ function bindTimerButtons(){
 		var box = $(this).parent();
 		$.post("/timer/delete", { timer:timers[index] }, function(data) {//deleteTimer in TimerControl.js
 			if(data == 1) {
+				timersOnScreen--;
 				box.fadeOut('slow'); //Remove timer on success
 			}
 		});

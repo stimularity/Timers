@@ -33,7 +33,8 @@ $(document).ready(function() {
 
 		$.post("/timer/create", { timer:t }, function(data) {//createTimer in TimerControl.js
 			if(data == 1){
-				addTimer(t);
+				//addTimer(t);
+				retrieveTimers();
 				closeLightbox();
 			}
 			//alert("Data Loaded: " + data);
