@@ -122,6 +122,18 @@ body {
 	float: left;
 	width:100%;
 }
+.sidebar{
+	margin:10px 0 0 0;
+	width:350px;
+	float: left;
+	background-color: rgb(150,255,255);
+}
+.bodycontent{
+	margin:10px 0 0 0;
+	width:636px;
+	float: left;
+	background-color: rgb(150,255,255);
+}
 
 #footer{}
 
@@ -131,10 +143,9 @@ body {
 	width:100%;
 }
 .timerentry {
-	width:450px;
-	height:300px;
+	width:550px;
 	float:left;
-	margin:0 0 15px 0;
+	margin:0 0 15px 20px;
 	border:thin solid #200;
 	background-color:#fda;
 }
@@ -155,14 +166,14 @@ body {
 .removetimerbutton {
 	float:left;
 	height:20px;
-	width:50px;
+	width:100px;
 	border:thin solid #200;
 	cursor:pointer;
 	cursor:hand;
 }
 .timercomment {
 	float:left;
-	width:450px;
+	width:540px;
 	height:33px;
 	margin: 5px 0 5px 5px;
 	font-size:30px;
@@ -184,6 +195,19 @@ body {
 	vertical-align:middle;
 	font-size:75px;
 	background-color:#FF0;
+}
+
+.progressbar {
+	height:40px;
+	width:550px;
+	float: left;
+	background-color:#a900ab;
+}
+.progress{
+	height:40px;
+	width:200px;
+	float: left;
+	background-color:#00a8ab;
 }
 .timerid {
 	visibility: hidden;
