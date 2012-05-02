@@ -200,9 +200,10 @@ body {
 	float: left;
 	background-color:#00a8ab;
 	text-align: left;
-	clip: rect(5px, 5px, 5px, 5px);
 	overflow: hidden;
 	background:url(/images/loading.gif);
+	background-size: 20px 19px;
+	background-size: cover;
 }
 .timerid {
 	visibility: hidden;
