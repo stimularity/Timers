@@ -2,4 +2,7 @@ A basic timer application that allowes users to create various types of timers t
 Each timer will have a mood which will play music matching tha mood.
 Users will be able to open their timers from anywhere on the internet.
 
-We plan to use node.js, express, socket.io, mongodb, jquery, and many other sweet technologies. Mad cool beats.
+We plan to use node.js, express, socket.io, mongodb, jquery, and many other sweet technologies.
+
+To run this application you need MongoDB, Mongoose, and a package called "zombie." To install
+"zombie" you can run "npm install zombie".
