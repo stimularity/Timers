@@ -83,7 +83,7 @@ function addTimer(timer){ //Adds timer to document
 	var timeAmount;
 	//set up the min or sec display
 
-	alert(timer.type + " type");
+	//alert(timer.type + " type");
 
 	if(timer.type == 1){
 		alert("minutes");
@@ -105,9 +105,9 @@ function addTimer(timer){ //Adds timer to document
 		'<div id="'+num+'_timer" class="timerentry" class="timerbutton">'+
 			'<div class="timercomment">'+timer.comment+'</div>'+
 			'<div id="'+num+'_ticker" class="timerdisplay"></div>'+
+			'<div class="removetimerbutton"></div>'+
+			'<div class="restarttimerbutton"></div>'+
 			'<div class="timerduration">Duration: '+timeAmount +' '+timeType+'</div>'+
-			'<div class="restarttimerbutton">Restart</div>'+
-			'<div class="removetimerbutton">Remove</div>'+
 			'<div class="progressbar"><div class="progress"></div></div>'+
 			'<div class="timerid">'+timer._id+'</div>'+
 		'</div>'

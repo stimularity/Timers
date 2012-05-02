@@ -57,7 +57,7 @@ exports.saveTimer = function(user,timer,cb){
 exports.deleteTimer = function(user,timer,cb){
 var query;
 
-	if(timer == null){
+	if(timer === null){
 		console.log("woaaah doggy");
 		return;
 
@@ -67,12 +67,12 @@ var query;
 		if(!err){
 		query.timers.id(timer._id).remove();
 		query.save(function (err) {
-			if(!err){ 
+			if(!err){
 
-				cb(true, query); 
+				cb(true, query);
 			}
-			else { 
-				cb(false, null); 
+			else {
+				cb(false, null);
 			}
 		});
 	}
@@ -94,7 +94,7 @@ var user = new User();
 	user.password = password;
 
 	User.findOne({username:username}).run(function(err, query){
-		if(query != null){
+		if(query !== null){
 			//we already have this username in the DB! error and try again
 			res.render('loginregister', { title: "Username already in use, try again.", name: "Not Logged In" });
 			//return "Username already in use, try again!";

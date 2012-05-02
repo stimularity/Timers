@@ -124,18 +124,31 @@ body {
 }
 .sidebar{
 	margin:10px 0 0 0;
-	width:350px;
+	width:349px;
 	float: left;
-	background-color: rgb(150,255,255);
+	border-left:thin solid #c8fcfe;
 }
 .bodycontent{
 	margin:10px 0 0 0;
 	width:636px;
 	float: left;
-	background-color: rgb(150,255,255);
 }
 
 #footer{}
+
+.moodmusicarea {
+	background:url(/images/music.png) no-repeat left top;
+	margin: 20px 0 0 10px;
+	padding: 0 0 0 40px;
+	float: left;
+}
+
+.createtimerarea {
+	background:url(/images/right.png) no-repeat left top;
+	margin: 20px 0 0 10px;
+	padding: 0 0 0 40px;
+	float: left;
+}
 
 /* ---------------------------------- Individual Timer Styles  ---------------------------------- */
 
@@ -147,7 +160,6 @@ body {
 	float:left;
 	margin:0 0 15px 20px;
 	border:thin solid #200;
-	background-color:#fda;
 }
 .timerbutton {
 	float:left;
@@ -155,38 +167,41 @@ body {
 	width:150px;
 	border:thin solid #000;
 }
-.timerduration {
-	float:left;
-	height:20px;
-	width:50px;
-	border:thin solid #200;
-	cursor:pointer;
-	cursor:hand;
-}
-.removetimerbutton {
-	float:left;
-	height:20px;
-	width:100px;
-	border:thin solid #200;
-	cursor:pointer;
-	cursor:hand;
-}
+	.timerduration {
+		float:left;
+		height:20px;
+		width:220px;
+		border:thin solid #200;
+		cursor:pointer;
+		cursor:hand;
+	}
+	.removetimerbutton {
+		float:right;
+		height:50px;
+		width:50px;
+		cursor:pointer;
+		cursor:hand;
+		background:url(/images/cancel.png) no-repeat top;
+	}
+	.restarttimerbutton {
+		float:right;
+		height:50px;
+		width:50px;
+		cursor:pointer;
+		cursor:hand;
+		background:url(/images/sync.png) no-repeat top;
+	}
 .timercomment {
 	float:left;
-	width:540px;
-	height:33px;
+	width:500px;
+	height:35px;
 	margin: 5px 0 5px 5px;
 	font-size:30px;
 	overflow: auto;
+	background:url(/images/info.png) no-repeat left center;
+	padding: 0 0 0 40px;
 }
-.restarttimerbutton {
-	float:left;
-	height:20px;
-	width:50px;
-	border:thin solid #200;
-	cursor:pointer;
-	cursor:hand;
-}
+
 .timerdisplay {
 	height:90px;
 	width:300px;
@@ -194,17 +209,16 @@ body {
 	text-align:center;
 	vertical-align:middle;
 	font-size:75px;
-	background-color:#FF0;
 }
 
 .progressbar {
-	height:40px;
+	height:35px;
 	width:550px;
 	float: left;
 	background-color:#a900ab;
 }
 .progress{
-	height:40px;
+	height:35px;
 	width:200px;
 	float: left;
 	background-color:#00a8ab;
