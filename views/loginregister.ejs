@@ -1,20 +1,18 @@
 </br>
 <h1><%= title %></h1>
-</br>
-
+<div class='login-form'>
 <form name="register" action="/validateregister" method="post" onsubmit="return validateCreate()">
-	Username:<input type="text" name="name" placeholder="Username" /> </br>
-	Password:<input type="password" name="password1" placeholder="Password" /></br>
-	Retypeit:<input type="password" name="password2" placeholder="Password" /></br>
+	<input type="text" name="name" placeholder="Username" /> </br>
+	<input type="password" name="password1" placeholder="Password" /></br>
+	<input type="password" name="password2" placeholder="Confirm Password" /></br>
 	<input type="submit" value="Sign up">
 </form> 
-
-</br>
+</div>
 <h2> Login </h2>
-</br>
-
+<div class='login-form'>
 <form name="login" action="/validatelogin" method="post" onsubmit="return validateCreate()">
-	Username:<input type="text" name="usname" placeholder="Username" /> </br>
-	Password:<input type="password" name="password3" placeholder="Password" /></br>
+	<input type="text" name="usname" placeholder="Username" /> </br>
+	<input type="password" name="password3" placeholder="Password" />
 	<input type="submit" value="Sign in">
 </form> 
+</div>
