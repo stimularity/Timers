@@ -174,9 +174,7 @@ body {
 		float:left;
 		height:20px;
 		width:220px;
-		border:thin solid #200;
-		cursor:pointer;
-		cursor:hand;
+		text-align: right;
 	}
 	.removetimerbutton {
 		float:right;
@@ -215,14 +213,14 @@ body {
 }
 
 .progressbar {
-	height:35px;
+	height:20px;
 	width:550px;
 	float: left;
-	background-color:#a900ab;
+	border-left:thin solid #00a8ab;
+	border-right:thin solid #00a8ab;
 }
 .progress{
-	height:35px;
-	width:200px;
+	height:20px;
 	float: left;
 	background-color:#00a8ab;
 }
