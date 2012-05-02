@@ -49,7 +49,7 @@ $(document).ready(function() {
 function retrieveTimers(){
 
 	$.getJSON("/timer/getUserTimers", function(data) { //Load users timers
-		alert(data.length + " " + timersOnScreen);
+		//alert(data.length + " " + timersOnScreen);
 		for(var i=timersOnScreen; i < data.length; i++)
 		{
 			var t = new Timer();
@@ -82,7 +82,10 @@ function addTimer(timer){ //Adds timer to document
 	var timeAmount;
 	//set up the min or sec display
 
+	alert(timer.type + " type");
+
 	if(timer.type == 1){
+		alert("minutes");
 		timeType = 'Minutes';
 		timeAmount = timer.duration;
 	}
