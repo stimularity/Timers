@@ -14,7 +14,7 @@ exports.help = function(req, res){
   var n;
 
   if(req.session.user != null){
-    n = req.session.user.name.first;
+    n = req.session.user.username;
   }else{
     n = 'Not Logged In';
   }
@@ -27,7 +27,7 @@ exports.about = function(req, res){
   var n;
 
   if(req.session.user != null){
-    n = req.session.user.name.first;
+    n = req.session.user.username;
   }else{
     n = 'Not Logged In';
   }
