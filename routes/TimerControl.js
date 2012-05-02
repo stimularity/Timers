@@ -32,6 +32,21 @@ exports.deleteTimer = function(req, res){
 	}); //Timer object, as usual.
 };
 
+exports.updateTimer = function(req,res){
+
+	var user = req.session.user; //User is logged in.
+	var timer = req.body.timer; //Be sure to pass timer objects for easy expandability
+	db.updateTimer(user, timer, function(success, newuser){
+		if(success){
+			req.session.user = newuser; //Update user session key.
+			res.send("1");
+		} else {
+			res.send("0");
+		}
+	}); //Timer object, as usual.
+
+}
+
 //Create Timer form, for timer creation
 exports.createTimerForm = function(req, res){
 	res.render('createTimerForm', { layout: false });

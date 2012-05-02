@@ -54,6 +54,19 @@ exports.saveTimer = function(user,timer,cb){
 	});
 };
 
+exports.updateTimer = function(user,timer,cb){
+
+	console.log("updating timer");
+
+	//User.findOne({username:user.username, password:user.password}).run(function (err, query) {
+	//	query.update({start:timer.start, end:timer.end});
+		
+	//});
+
+	//User.update({timers._id:timer._id}, {timers.start:timer.start, timers.end:timer.end});
+
+}
+
 exports.deleteTimer = function(user,timer,cb){
 var query;
 

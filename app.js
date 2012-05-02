@@ -48,6 +48,7 @@ app.post('/validateregister', routes.validateregister);
 app.get('/user/:id', routes.user);
 
 //Timer URLs
+app.post('/timer/update', routes.updateTimer);
 app.post('/timer/create', routes.createTimer);
 app.post('/timer/delete', routes.deleteTimer);
 app.get('/timer/createTimerForm', routes.createTimerForm);

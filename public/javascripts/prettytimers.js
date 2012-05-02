@@ -15,6 +15,13 @@ function Timer(minutes) {
 		if(reset == 1){
 			this.start = Math.round((new Date()).getTime() / 1000);
 			this.end = this.start + (this.duration * 60);
+
+			$.post("/timer/update", { timer:this }, function(data) {//updateTimer in TimerControl.js
+			if(data == 1){
+				
+			}
+		});
+
 		}
 
 		now = this.start = Math.round((new Date()).getTime() / 1000); //Current time

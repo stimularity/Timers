@@ -39,6 +39,7 @@ exports.about = function(req, res){
 exports.user = UserControl.home;
 
 //Timer Management Routes
+exports.updateTimer = TimerControl.updateTimer;
 exports.createTimer = TimerControl.createTimer;
 exports.deleteTimer = TimerControl.deleteTimer;
 exports.createTimerForm = TimerControl.createTimerForm;
