@@ -157,9 +157,12 @@ body {
 }
 .timerentry {
 	width:550px;
+	height:170px;
 	float:left;
 	margin:0 0 15px 20px;
-	border:thin solid #200;
+	border-top:thin solid #def7fe;
+	background:url(/images/lonetimerbg.png) repeat-x top;
+
 }
 .timerbutton {
 	float:left;

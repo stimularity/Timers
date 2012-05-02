@@ -1,5 +1,6 @@
 var num = 0;
 var timers = [];
+var timersOnScreen = 0;
 //Javascript Timer Object
 function Timer(minutes) {
 	this.id = 0;
@@ -9,14 +10,20 @@ function Timer(minutes) {
 	this.duration = minutes;
 	this.type = 0; //default 0 = seconds, 1 = minutes
 	this.comment = "";
-	this.update = function(){
+	this.update = function(reset){
+
+		if(reset == 1){
+			this.start = Math.round((new Date()).getTime() / 1000);
+			this.end = this.start + (this.duration * 60);
+		}
+
 		now = this.start = Math.round((new Date()).getTime() / 1000); //Current time
 		remaining = (this.end - now); //End time of the timer
 		var text = "Finished";
 		if(remaining-1 >= 0) { text = (Math.ceil((remaining/60)-1) + ":" + remaining%60); }
 		$('#'+this.id+'_ticker').text(text); //Update their own text
-		var progress = (remaining/this.duration);
-		$('#'+this.id+'_timer').find('.progress').text(progress);//.css({'width':progress});
+		var progress = (Math.ceil((remaining/60)-1))/550;
+		$('#'+this.id+'_timer').find('.progress').css({'width':progress});
 	};
 }
 //Timer Object
@@ -41,8 +48,15 @@ $(document).ready(function() {
 			$.get("/timer/createTimerForm", function(data) { lightBox(600,400,data); });
 	});
 
+	retrieveTimers();
+	
+});
+
+function retrieveTimers(){
+
 	$.getJSON("/timer/getUserTimers", function(data) { //Load users timers
-		for(var i=0; i<data.length; i++)
+		//alert(data.length + " " + timersOnScreen);
+		for(var i=timersOnScreen; i < data.length; i++)
 		{
 			var t = new Timer();
 			t.start = data[i].start;
@@ -50,16 +64,19 @@ $(document).ready(function() {
 			t.comment = data[i].comment;
 			t.duration = data[i].duration;
 			t._id = data[i]._id;
+			t.type = data[i].type;
 			
 			addTimer(t);
+
+			timersOnScreen ++;
 		}
 	});
-});
+}
 
 
 function updateTimers(){
 	for(var i=0; i<timers.length; i++){
-		timers[i].update();
+		timers[i].update(0);
 	}
 }
 
@@ -90,9 +107,9 @@ function addTimer(timer){ //Adds timer to document
 		'<div id="'+num+'_timer" class="timerentry" class="timerbutton">'+
 			'<div class="timercomment">'+timer.comment+'</div>'+
 			'<div id="'+num+'_ticker" class="timerdisplay"></div>'+
-			'<div class="restarttimerbutton"></div>'+
-			'<div class="removetimerbutton"></div>'+
 			'<div class="timerduration">Duration: '+timeAmount +' '+timeType+'</div>'+
+			'<div class="restarttimerbutton">Restart</div>'+
+			'<div class="removetimerbutton">Remove</div>'+
 			'<div class="progressbar"><div class="progress"></div></div>'+
 			'<div class="timerid">'+timer._id+'</div>'+
 		'</div>'
@@ -114,6 +131,7 @@ function bindTimerButtons(){
 		var box = $(this).parent();
 		$.post("/timer/delete", { timer:timers[index] }, function(data) {//deleteTimer in TimerControl.js
 			if(data == 1) {
+				timersOnScreen--;
 				box.fadeOut('slow'); //Remove timer on success
 			}
 		});
@@ -121,7 +139,7 @@ function bindTimerButtons(){
 	$('.restarttimerbutton').click(function(){
 		var index = ($(this).parent().attr("id").substring(0,1)) - 1;
 		var t = timers[index];
-		alert(t.duration + " " + t.comment);
+		t.update(1);
 	});
 }
 
