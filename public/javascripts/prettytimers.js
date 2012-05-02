@@ -15,7 +15,8 @@ function Timer(minutes) {
 		var text = "Finished";
 		if(remaining-1 >= 0) { text = (Math.ceil((remaining/60)-1) + ":" + remaining%60); }
 		$('#'+this.id+'_ticker').text(text); //Update their own text
-		
+		var progress = (remaining/this.duration);
+		$('#'+this.id+'_timer').find('.progress').text(progress);//.css({'width':progress});
 	};
 }
 //Timer Object
@@ -89,9 +90,9 @@ function addTimer(timer){ //Adds timer to document
 		'<div id="'+num+'_timer" class="timerentry" class="timerbutton">'+
 			'<div class="timercomment">'+timer.comment+'</div>'+
 			'<div id="'+num+'_ticker" class="timerdisplay"></div>'+
+			'<div class="restarttimerbutton"></div>'+
+			'<div class="removetimerbutton"></div>'+
 			'<div class="timerduration">Duration: '+timeAmount +' '+timeType+'</div>'+
-			'<div class="restarttimerbutton">Restart</div>'+
-			'<div class="removetimerbutton">Remove</div>'+
 			'<div class="progressbar"><div class="progress"></div></div>'+
 			'<div class="timerid">'+timer._id+'</div>'+
 		'</div>'
