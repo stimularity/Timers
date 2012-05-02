@@ -1,6 +1,5 @@
 var num = 0;
 var timers = [];
-var timersOnScreen = 0;
 //Javascript Timer Object
 function Timer(minutes) {
 	this.id = 0;
@@ -16,9 +15,7 @@ function Timer(minutes) {
 		var text = "Finished";
 		if(remaining-1 >= 0) { text = (Math.ceil((remaining/60)-1) + ":" + remaining%60); }
 		$('#'+this.id+'_ticker').text(text); //Update their own text
-		var progress = ((remaining/this.duration));
-		//alert( (Math.ceil((remaining/60)-1)) + " " + this.duration);
-		$('#'+this.id+'_timer').find('.progress').text(progress);//.css({'width':progress});
+		
 	};
 }
 //Timer Object
@@ -43,15 +40,8 @@ $(document).ready(function() {
 			$.get("/timer/createTimerForm", function(data) { lightBox(600,400,data); });
 	});
 
-	retrieveTimers();
-	
-});
-
-function retrieveTimers(){
-
 	$.getJSON("/timer/getUserTimers", function(data) { //Load users timers
-		//alert(data.length + " " + timersOnScreen);
-		for(var i=timersOnScreen; i < data.length; i++)
+		for(var i=0; i<data.length; i++)
 		{
 			var t = new Timer();
 			t.start = data[i].start;
@@ -61,12 +51,9 @@ function retrieveTimers(){
 			t._id = data[i]._id;
 			
 			addTimer(t);
-
-			timersOnScreen ++;
 		}
 	});
-
-}
+});
 
 
 function updateTimers(){
@@ -83,10 +70,7 @@ function addTimer(timer){ //Adds timer to document
 	var timeAmount;
 	//set up the min or sec display
 
-	//alert(timer.type + " type");
-
 	if(timer.type == 1){
-		alert("minutes");
 		timeType = 'Minutes';
 		timeAmount = timer.duration;
 	}
@@ -105,9 +89,9 @@ function addTimer(timer){ //Adds timer to document
 		'<div id="'+num+'_timer" class="timerentry" class="timerbutton">'+
 			'<div class="timercomment">'+timer.comment+'</div>'+
 			'<div id="'+num+'_ticker" class="timerdisplay"></div>'+
-			'<div class="removetimerbutton"></div>'+
-			'<div class="restarttimerbutton"></div>'+
 			'<div class="timerduration">Duration: '+timeAmount +' '+timeType+'</div>'+
+			'<div class="restarttimerbutton">Restart</div>'+
+			'<div class="removetimerbutton">Remove</div>'+
 			'<div class="progressbar"><div class="progress"></div></div>'+
 			'<div class="timerid">'+timer._id+'</div>'+
 		'</div>'
@@ -129,7 +113,6 @@ function bindTimerButtons(){
 		var box = $(this).parent();
 		$.post("/timer/delete", { timer:timers[index] }, function(data) {//deleteTimer in TimerControl.js
 			if(data == 1) {
-				timersOnScreen--;
 				box.fadeOut('slow'); //Remove timer on success
 			}
 		});
