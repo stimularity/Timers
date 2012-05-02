@@ -32,8 +32,6 @@ $(document).ready(function() {
 			t.type = 0;
 		}
 
-		alert(t.type);
-
 		$.post("/timer/create", { timer:t }, function(data) {//createTimer in TimerControl.js
 			if(data == 1){
 				//addTimer(t);

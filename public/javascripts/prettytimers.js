@@ -10,7 +10,13 @@ function Timer(minutes) {
 	this.duration = minutes;
 	this.type = 0; //default 0 = seconds, 1 = minutes
 	this.comment = "";
-	this.update = function(){
+	this.update = function(reset){
+
+		if(reset == 1){
+			this.start = Math.round((new Date()).getTime() / 1000);
+			this.end = this.start + (this.duration * 60);
+		}
+
 		now = this.start = Math.round((new Date()).getTime() / 1000); //Current time
 		remaining = (this.end - now); //End time of the timer
 		var text = "Finished";
@@ -65,13 +71,12 @@ function retrieveTimers(){
 			timersOnScreen ++;
 		}
 	});
-
 }
 
 
 function updateTimers(){
 	for(var i=0; i<timers.length; i++){
-		timers[i].update();
+		timers[i].update(0);
 	}
 }
 
@@ -84,7 +89,6 @@ function addTimer(timer){ //Adds timer to document
 	//set up the min or sec display
 
 	if(timer.type == 1){
-		alert("minutes");
 		timeType = 'Minutes';
 		timeAmount = timer.duration;
 	}
@@ -135,7 +139,7 @@ function bindTimerButtons(){
 	$('.restarttimerbutton').click(function(){
 		var index = ($(this).parent().attr("id").substring(0,1)) - 1;
 		var t = timers[index];
-		alert(t.duration + " " + t.comment);
+		t.update(1);
 	});
 }
 
