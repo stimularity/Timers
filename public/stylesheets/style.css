@@ -269,3 +269,125 @@ body {
 .defaultTextActive{
 	color:gray;
 }
+
+/* ---------------------------------- Login/Register box styles  ---------------------------------- */
+
+.login-form,
+.login-form h1,
+.login-form input,
+.login-form label {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+}
+
+.login-form {
+	position: relative;
+	width: 200px;
+	height: 150px;
+	padding: 10px 15px 0 10px;
+	cursor: default;
+
+
+	-webkit-border-radius: 5px;
+
+	border-radius: 5px;
+
+
+}
+
+.login-form input[type=text],
+.login-form input[type=password],
+.login-form input[type=submit] {
+	line-height: 14px;
+	margin: 5px 0;
+	padding: 6px 15px;
+	border: 0;
+	outline: none;
+
+	font-family: Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-shadow: 0px 1px 1px rgba(255,255,255, .2);
+
+	-webkit-border-radius: 26px;
+
+	border-radius: 26px;
+
+}
+input::-webkit-input-placeholder {
+	color:#777777;
+}
+
+.login-form input[type=text],
+.login-form input[type=password],
+.js .login-form span {
+	color: #686868;
+	width: 170px;
+
+	-webkit-box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .6);
+
+	box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .6);
+
+	background: #989898;
+
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#989898));
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#989898 100%);
+	background: -o-linear-gradient(top,  #ffffff 0%,#989898 100%);
+	background: -ms-linear-gradient(top,  #ffffff 0%,#989898 100%);
+	background: linear-gradient(top,  #ffffff 0%,#989898 100%);
+}
+
+.login-form input[type=text]:hover,
+.login-form input[type=password]:hover {
+	-webkit-box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .6), 0px 0px 5px rgba(255,255,255, .5);
+
+	box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .6), 0px 0px 5px rgba(255,255,255, .5);
+}
+
+.login-form input[type=text]:focus,
+.login-form input[type=password]:focus {
+	background: #e1e1e1;
+
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e1e1e1));
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#e1e1e1 100%);
+	background: -o-linear-gradient(top,  #ffffff 0%,#e1e1e1 100%);
+	background: -ms-linear-gradient(top,  #ffffff 0%,#e1e1e1 100%);
+	background: linear-gradient(top,  #ffffff 0%,#e1e1e1 100%);
+}
+
+.login-form input[type=submit] {
+	float: right;
+	cursor: pointer;
+
+	color: #445b0f;
+
+	-webkit-box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .45), 0px 1px 1px 0px rgba(0,0,0, .3);
+
+	box-shadow: inset 1px 1px 1px 0px rgba(255,255,255, .45), 0px 1px 1px 0px rgba(0,0,0, .3);
+}
+
+.login-form input[type=submit]:hover {
+	color:#4C0C34;
+	-webkit-box-shadow: inset 1px 1px 3px 0px rgba(255,255,255, .8), 0px 1px 1px 0px rgba(0,0,0, .6);
+
+	box-shadow: inset 1px 1px 3px 0px rgba(255,255,255, .8), 0px 1px 1px 0px rgba(0,0,0, .6);
+}
+
+.login-form input[type=submit]:active {
+	-webkit-box-shadow: none;
+
+	box-shadow: none;
+	color:#4C0C34;
+}
+
+.login-form input[type=submit] {
+	background: #a5cd4e;
+
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a5cd4e), color-stop(100%,#6b8f1a));
+	background: -webkit-linear-gradient(top,  #a5cd4e 0%,#6b8f1a 100%);
+	background: -o-linear-gradient(top,  #a5cd4e 0%,#6b8f1a 100%);
+	background: -ms-linear-gradient(top,  #a5cd4e 0%,#6b8f1a 100%);
+	background: linear-gradient(top,  #a5cd4e 0%,#6b8f1a 100%);
+}
