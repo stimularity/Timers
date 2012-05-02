@@ -25,6 +25,7 @@ $(document).ready(function() {
 		//check if min or sec
 		if(minutes === true && seconds === false){
 			//minutes
+			alert("type min");
 			t.type = 1;
 		}else{
 			//seconds

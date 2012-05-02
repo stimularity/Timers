@@ -83,7 +83,10 @@ function addTimer(timer){ //Adds timer to document
 	var timeAmount;
 	//set up the min or sec display
 
+	alert(timer.type + " type");
+
 	if(timer.type == 1){
+		alert("minutes");
 		timeType = 'Minutes';
 		timeAmount = timer.duration;
 	}

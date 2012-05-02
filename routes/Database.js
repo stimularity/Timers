@@ -56,7 +56,6 @@ exports.saveTimer = function(user,timer,cb){
 
 exports.deleteTimer = function(user,timer,cb){
 var query;
-console.log("deleting " + timer._id + " for user " + user.name.first);
 
 	if(timer == null){
 		console.log("woaaah doggy");
@@ -65,7 +64,6 @@ console.log("deleting " + timer._id + " for user " + user.name.first);
 	}
 
 	User.findOne({username:user.username, password:user.password}).run(function (err, query) {
-		console.log(query);
 		if(!err){
 		query.timers.id(timer._id).remove();
 		query.save(function (err) {
@@ -89,8 +87,7 @@ exports.validateUser = function(username, password, cb){
 	});
 };
 
-exports.newUser = function(req, res, username, password 
-	){
+exports.newUser = function(req, res, username, password ){
 
 var user = new User();
 	user.username = username;
@@ -98,22 +95,18 @@ var user = new User();
 
 	User.findOne({username:username}).run(function(err, query){
 		if(query != null){
-		console.log("duplicate dude");
 			//we already have this username in the DB! error and try again
 			res.render('loginregister', { title: "Username already in use, try again.", name: "Not Logged In" });
 			//return "Username already in use, try again!";
 			
 		}else{
-		
-console.log("its fine");
-	
+			
 	user.save(function(err, user_Saved){
 		if(err){
 			throw err;
 			//console.log(err);
 			//return "Something is fucked.";
 		}else{
-			console.log('saved!');
 			res.render('loginregister', { title: "Creation successful! Please login.", name: "Not Logged In" });
 			//return "Creation successful! Please login now.";
 		}
