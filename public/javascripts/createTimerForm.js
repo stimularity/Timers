@@ -25,12 +25,14 @@ $(document).ready(function() {
 		//check if min or sec
 		if(minutes === true && seconds === false){
 			//minutes
-			alert("type min");
+
 			t.type = 1;
 		}else{
 			//seconds
 			t.type = 0;
 		}
+
+		alert(t.type);
 
 		$.post("/timer/create", { timer:t }, function(data) {//createTimer in TimerControl.js
 			if(data == 1){

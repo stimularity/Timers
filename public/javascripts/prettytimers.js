@@ -58,6 +58,7 @@ function retrieveTimers(){
 			t.comment = data[i].comment;
 			t.duration = data[i].duration;
 			t._id = data[i]._id;
+			t.type = data[i].type;
 			
 			addTimer(t);
 
@@ -81,8 +82,6 @@ function addTimer(timer){ //Adds timer to document
 	var timeType;
 	var timeAmount;
 	//set up the min or sec display
-
-	alert(timer.type + " type");
 
 	if(timer.type == 1){
 		alert("minutes");
