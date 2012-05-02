@@ -27,7 +27,7 @@ exports.login = function(req, res){
 
 	}
 
-  res.render('loginregister', { title: 'Login/Register', name: 'Not Logged In' })
+  res.render('loginregister', { title: 'Login', name: 'Not Logged In' })
 };
 
 exports.logout = function(req, res){
