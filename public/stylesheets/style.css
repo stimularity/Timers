@@ -198,12 +198,9 @@ body {
 .progress{
 	height:20px;
 	float: left;
-	background-color:#00a8ab;
 	text-align: left;
-	overflow: hidden;
-	background:url(/images/loading.gif);
-	background-size: 20px 19px;
-	background-size: cover;
+	background:url(/images/loading.gif) repeat-x top;
+	border-right:thin solid #00a8ab;
 }
 .timerid {
 	visibility: hidden;
