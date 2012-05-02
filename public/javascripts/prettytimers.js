@@ -16,8 +16,9 @@ function Timer(minutes) {
 		var text = "Finished";
 		if(remaining-1 >= 0) { text = (Math.ceil((remaining/60)-1) + ":" + remaining%60); }
 		$('#'+this.id+'_ticker').text(text); //Update their own text
-		var progress = (Math.ceil((remaining/60)-1))/550;
-		$('#'+this.id+'_timer').find('.progress').css({'width':progress});
+		var progress = ((remaining/this.duration));
+		//alert( (Math.ceil((remaining/60)-1)) + " " + this.duration);
+		$('#'+this.id+'_timer').find('.progress').text(progress);//.css({'width':progress});
 	};
 }
 //Timer Object
@@ -49,7 +50,7 @@ $(document).ready(function() {
 function retrieveTimers(){
 
 	$.getJSON("/timer/getUserTimers", function(data) { //Load users timers
-		alert(data.length + " " + timersOnScreen);
+		//alert(data.length + " " + timersOnScreen);
 		for(var i=timersOnScreen; i < data.length; i++)
 		{
 			var t = new Timer();
